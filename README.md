@@ -1,1 +1,1 @@
-# javacore.dz4
+# javacore
