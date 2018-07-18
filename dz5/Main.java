@@ -34,8 +34,8 @@ package ru.panizaandrey.dz5;
 */
 
 public class Main {
-    private static final int SIZE = 10000000;
-    private static final int HALF_SIZE = SIZE / 2;
+    private static final int size = 10000000;
+    private static final int h = size / 2;
 
 
     public float[] calculate(float[] arr) {
@@ -45,7 +45,7 @@ public class Main {
     }
 
     public void runOneThread() {
-        float[] arr = new float[SIZE];
+        float[] arr = new float[size];
         for (int i = 0; i < arr.length; i++) arr[i] = 1.0f;
         long a = System.currentTimeMillis();
         calculate(arr);
@@ -53,14 +53,14 @@ public class Main {
     }
 
     public void runTwoThreads() {
-        float[] arr = new float[SIZE];
-        float[] arr1 = new float[HALF_SIZE];
-        float[] arr2 = new float[HALF_SIZE];
+        float[] arr = new float[size];
+        float[] arr1 = new float[h];
+        float[] arr2 = new float[h];
         for (int i = 0; i < arr.length; i++) arr[i] = 1.0f;
 
         long a = System.currentTimeMillis();
-        System.arraycopy(arr, 0, arr1, 0, HALF_SIZE);
-        System.arraycopy(arr, HALF_SIZE, arr2, 0, HALF_SIZE);
+        System.arraycopy(arr, 0, arr1, 0, h);
+        System.arraycopy(arr, h, arr2, 0, h);
 
         new Thread() {
             public void run() {
@@ -76,8 +76,8 @@ public class Main {
             }
         }.start();
 
-        System.arraycopy(arr1, 0, arr, 0, HALF_SIZE);
-        System.arraycopy(arr2, 0, arr, HALF_SIZE, HALF_SIZE);
+        System.arraycopy(arr1, 0, arr, 0, h);
+        System.arraycopy(arr2, 0, arr, h, h);
         System.out.println("Two threads ends with: " + (System.currentTimeMillis() - a));
     }
 
