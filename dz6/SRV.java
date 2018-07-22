@@ -33,10 +33,8 @@ class SRV {
             System.out.println("Не могу принять");
             System.exit(1);
         }
-
         in  = new BufferedReader(new InputStreamReader(socket.getInputStream()));
         out = new PrintWriter(socket.getOutputStream(),true);
-
         System.out.println("Ожидание сообщений...");
     }
 
